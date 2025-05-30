@@ -1,4 +1,4 @@
-package org.nightcrwaler.jobms.job;
+package org.nightcrwaler.jobms.restTemplate;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
