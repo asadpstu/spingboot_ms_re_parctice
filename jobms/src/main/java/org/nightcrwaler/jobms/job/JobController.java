@@ -44,4 +44,14 @@ public class JobController {
         return jobService.getTolerance();
     }
 
+    @GetMapping("/retry_with_fault_tolerance")
+    public String retry_with_fault_tolerance(){
+        return jobService.retry_with_fault_tolerance();
+    }
+
+    @GetMapping("/rate_limit")
+    public String rate_limit(){
+        return jobService.rate_limit();
+    }
+
 }
