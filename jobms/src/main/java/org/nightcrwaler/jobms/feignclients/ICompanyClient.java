@@ -8,4 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ICompanyClient {
     @GetMapping("/company/{id}")
     String getCompanyInformation(@PathVariable("id") Long id);
+
+    @GetMapping("/company/tolerance")
+    String getToleranceInformation();
+
 }

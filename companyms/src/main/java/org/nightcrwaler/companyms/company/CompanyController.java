@@ -22,4 +22,12 @@ public class CompanyController {
         id = 1001L;
         return "Company id: " + id + " message: " + message;
     }
+
+    @GetMapping("/tolerance")
+    public String getToleranceInformation(){
+        int companyCapital = (int) (Math.random() * 1000);
+        return "Company capital is: " + companyCapital;
+    }
+
+
 }

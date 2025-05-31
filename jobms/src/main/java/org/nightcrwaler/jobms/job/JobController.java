@@ -16,6 +16,9 @@ public class JobController {
     @Autowired
     ICompanyClient companyClient;
 
+    @Autowired
+    private JobService jobService;
+
     @GetMapping
     public String root(){
         return "Job service is running";
@@ -34,6 +37,11 @@ public class JobController {
         long companyId = 1001L;
         String companyInfo = companyClient.getCompanyInformation(companyId);
         return "This is Job details for : " +id+ " Company Information by FeignClient: " + companyInfo;
+    }
+
+    @GetMapping("/fault_tolerance")
+    public String checkFaultTolerance(){
+        return jobService.getTolerance();
     }
 
 }
