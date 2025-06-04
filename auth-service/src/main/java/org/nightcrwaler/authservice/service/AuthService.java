@@ -1,10 +1,14 @@
 package org.nightcrwaler.authservice.service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.nightcrwaler.authservice.entity.UserCredential;
 import org.nightcrwaler.authservice.repository.UserCredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.function.Function;
 
 @Service
 public class AuthService {

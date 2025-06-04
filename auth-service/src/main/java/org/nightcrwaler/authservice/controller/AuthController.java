@@ -5,6 +5,7 @@ import org.nightcrwaler.authservice.dto.CreateUser;
 import org.nightcrwaler.authservice.dto.LoginResponseDto;
 import org.nightcrwaler.authservice.entity.UserCredential;
 import org.nightcrwaler.authservice.service.AuthService;
+import org.nightcrwaler.authservice.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtService jwtService;
 
 
     @PostMapping("/register")
@@ -53,5 +56,19 @@ public class AuthController {
     public  String validateToekn(@RequestParam("token") String token) {
         authService.validateToken(token);
         return "Token is valid";
+    }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<LoginResponseDto> refreshAccessToken(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return new ResponseEntity<>(new LoginResponseDto(null, null), HttpStatus.BAD_REQUEST);
+        }
+
+        String refreshToken = authHeader.substring(7);
+        authService.validateToken(refreshToken);
+        String userEmail = jwtService.extractUserEmail(refreshToken);
+        String newAccessToken = jwtService.generateToken(userEmail);
+        String newRefreshToken = jwtService.generateRefreshToken(userEmail);
+        return ResponseEntity.ok(new LoginResponseDto(newAccessToken, newRefreshToken));
     }
 }
