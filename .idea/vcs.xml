@@ -7,6 +7,7 @@
     <mapping directory="$PROJECT_DIR$/eureka-service-registry-server" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/gateway" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/jobms" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/microservice-configuration" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/reviewms" vcs="Git" />
   </component>
 </project>
